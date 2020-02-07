@@ -1,0 +1,14 @@
+<div class="container-fluid mainContainer">
+    <div class="row">
+        <div class="col-sm-8">
+            <ul class="list-group">
+                <li class="list-group-item active">My Orders</li>
+                <li class="list-group-item" *ngIf="!myHistory.length">No history found</li>
+              </ul>
+              <br>
+            <div  class= "card-columns">
+                <app-item-card *ngFor="let item of myHistory" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
+            </div>
+        </div>    
+    </div>    
+</div>    

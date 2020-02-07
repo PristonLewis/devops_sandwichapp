@@ -1,0 +1,51 @@
+<app-loader [flag] = "loaderFlag"></app-loader>
+<div class="container-fluid mainContainer">
+    <div class="row">
+        <div class="col-sm-8">
+            <ul class="list-group">
+                <li class="list-group-item active">My preferences</li>
+                <li class="list-group-item" *ngIf="!allPreferenceList.length">No preferences found.</li>
+              </ul>
+              
+              <br>
+            <div  class= "card-columns">
+                <app-item-card *ngFor="let item of allPreferenceList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
+            </div>    
+            <ul class="list-group">
+                <li class="list-group-item active">Items</li>
+                <li class="list-group-item" *ngIf="!allItemsList.length">No items found</li>
+              </ul>
+              <br>
+            <div class= "card-columns">
+                <app-item-card *ngFor="let item of allItemsList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <app-detail-card header="My Cart" (removeCardEvent)="removeFromCart($event)" [cartItems]="itemDataList"></app-detail-card>
+            <br/>
+            <h3>Total: {{total}}</h3>
+            <button class="btn btn-outline-primary" (click)="placeOrder()">Place the order</button>
+        </div>        
+    </div>
+
+</div>
+
+<div  class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{confirmationMessage}}.
+        </div>
+        <div class="modal-footer btnspace">
+
+          <button type="button" class="btn btn-primary " (click)="ok()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>  

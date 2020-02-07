@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li class="list-group-item active">{{header}}</li>
+    <li class="list-group-item" *ngIf="!cartItems.length">Nothing in your cart</li>
+    <li class="list-group-item" *ngFor="let item of cartItems; let i = index"><button class="btn btn-default"> {{item.itemName}}</button> <button class="disabled btn btn-default-outline"> Price: {{item.price}}</button><button class="btn btn-sm btn-outline-danger right" (click)="remove(i)">X</button></li>
+  </ul>
