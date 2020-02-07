@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -9,14 +10,16 @@ import { HttpService } from 'src/app/shared/services/http.service';
 export class HistoryComponent implements OnInit {
 
   public myHistory: Array<any> = [];
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private route: Router) { }
 
   ngOnInit() {
-    // gets all the order history
     this.http.getRequest('/orders/viewOrder/' + localStorage.getItem('userid')).subscribe((data) => {
-      console.log('data', data);
       this.myHistory = data.orderItems;
     });
+  }
+
+  public goBack(): void {
+    this.route.navigate(['/order']);
   }
 
 }

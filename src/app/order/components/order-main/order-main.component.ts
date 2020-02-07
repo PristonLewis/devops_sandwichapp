@@ -38,10 +38,10 @@ export class OrderMainComponent implements OnInit {
 
     // Getting all the preferences
     public getAllPreferences(): void {
-      this.loaderFlag = true;
+      // this.loaderFlag = true;
       this.http.getRequest('orders/pref/' + localStorage.getItem('userid')).subscribe((data) => {
         this.allPreferenceList = data;
-        this.loaderFlag = false;
+        // this.loaderFlag = false;
       });
     }
 

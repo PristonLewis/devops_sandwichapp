@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { setupTestingRouter } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,18 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'sandwich';
   public signoutFlag: boolean = true;
-  constructor(private route: Router) {}
+  constructor(private route: Router) {
+    this.route.events.subscribe((event: any) => {
+        if (event instanceof NavigationEnd) {
+            if (event.url === '/login') {
+                this.signoutFlag = false;
+            } else {
+             this.signoutFlag = true;
+            }
+          }
+
+     });
+  }
   public signout(): void {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');

@@ -24,7 +24,7 @@
             <app-detail-card header="My Cart" (removeCardEvent)="removeFromCart($event)" [cartItems]="itemDataList"></app-detail-card>
             <br/>
             <h3>Total: {{total}}</h3>
-            <button class="btn btn-outline-primary" (click)="placeOrder()">Place the order</button>
+            <button class="btn btn-outline-primary" *ngIf="itemDataList.length" (click)="placeOrder()">Place the order</button>
         </div>        
     </div>
 
